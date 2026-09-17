@@ -5,7 +5,7 @@ tap. That is a lot of trust to ask for, so this document states exactly what
 strafe can and cannot do, and how to verify every claim yourself. Every claim
 below points at a file and line you can read or a command you can run.
 
-The whole program is about **1.600 lines** of Swift + C (`wc -l Sources/**`).
+The whole program is about **1,600 lines** of Swift + C (`wc -l Sources/**`).
 You can build it from source in about 30 seconds (`swift build`) and audit it
 in an afternoon.
 
