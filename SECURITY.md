@@ -5,7 +5,7 @@ tap. That is a lot of trust to ask for, so this document states exactly what
 strafe can and cannot do, and how to verify every claim yourself. Every claim
 below points at a file and line you can read or a command you can run.
 
-The whole program is about **1,486 lines** of Swift + C (`wc -l Sources/**`).
+The whole program is about **1,577 lines** of Swift + C (`wc -l Sources/**`).
 You can build it from source in about 30 seconds (`swift build`) and audit it
 in an afternoon.
 
@@ -83,6 +83,13 @@ Control is open so it can pass real swipes through — `strafe_is_expose_active`
 pick which display to switch on (`copy_cursor_display_identifier`, same file
 line 112). Neither the window list nor the cursor position is stored or
 transmitted; both are read, used for that one decision, and discarded.
+
+After each Space change, `Sources/strafe/FocusRestorer.swift` reads the same
+on-screen window list once more (owner pid, layer, alpha, bounds) to find the
+topmost visible window on the new Space, and if the frontmost app has no
+visible window there, activates that window's app through the Accessibility
+API (`AXUIElementSetAttributeValue` with `kAXFrontmostAttribute`). It reads
+nothing else, keeps no history, and posts no events.
 
 ---
 

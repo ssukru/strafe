@@ -122,6 +122,9 @@ The app is about 1,486 lines of Swift and C with no third-party dependencies —
 - **3-finger swipe** — just works once strafe is running and has Accessibility.
   Swipe left/right between Spaces and the switch is instant.
 - **Keyboard** — `ctrl`+`opt`+`←` and `ctrl`+`opt`+`→` switch Spaces.
+- **Focus follows the Space** — after a switch, the app you last used on that
+  Space is brought to the front, so you can type right away instead of clicking
+  first. macOS does not always do this on its own.
 - **Menu bar** — click the strafe icon to enable/disable interception, check
   whether Accessibility has been granted, and see which version you're running
   and where to get a newer one.

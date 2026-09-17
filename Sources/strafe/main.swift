@@ -119,6 +119,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var interceptor: SwipeInterceptor!
     private var hotkeys: HotkeyManager!
     private var statusItem: StatusItemController!
+    private var focusRestorer: FocusRestorer!
 
     init(engine: GestureSwitchEngine) {
         self.engine = engine
@@ -134,6 +135,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         hotkeys = HotkeyManager(engine: engine)
         hotkeys.register()
+
+        focusRestorer = FocusRestorer()
+        focusRestorer.start()
 
         // SPEC §2.4 / §5: reset the prediction dictionary to live CGS data
         // whenever the OS reports a real space change, so rapid repeated swipes
@@ -152,6 +156,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ notification: Notification) {
         interceptor?.teardown()
         hotkeys?.unregister()
+        focusRestorer?.stop()
         NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
 }
